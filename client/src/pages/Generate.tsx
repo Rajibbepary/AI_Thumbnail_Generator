@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import type { IThumbnail } from "../assets/assets";
+import { colorSchemes, type AspectRatio, type IThumbnail, type ThumbnailStyle } from "../assets/assets";
+
 import SoftBackdrop from "../components/SoftBackdrop";
+import AspectRatioSelector from "../components/AspectRatioSelector";
 
 
 const Generate = () => {
@@ -10,8 +12,16 @@ const Generate = () => {
     const [title, setTitle] = useState('')
     const [additionalDetails, setAdditionalDetails] = useState('')
 
-    const [thumbnail, setThumnail] = useState<IThumbnail | null>(null)
+    const [thumbnail, setThumbnail] = useState<IThumbnail | null>(null)
+
     const [loading, setLoading] = useState(false)
+
+    const [aspectRatio, setAspectRatio] = useState <AspectRatio>('16:9')
+    const [colorSchemeId, setColorSchemeId] = useState <string>(colorSchemes[0].id)
+    const [style, setStyle] = useState<ThumbnailStyle>('Bold & Graphic')
+
+
+    const [styleDropdownOpen, setStyleDropdownOpen] = useState(false)
     return (
         <>
             <SoftBackdrop/>
@@ -33,14 +43,21 @@ const Generate = () => {
                                 <div className="flex justify-end"> <span className="text-xs text-zinc-400">{title.length}/100</span></div>
                             </div>
                              {/* { AspectRationSelector} */}
+                             <AspectRatioSelector value={aspectRatio}  onChange={setAspectRatio}/>
                              {/* StyleSelector */}
                              {/* ColorSchemeSelector */}
+
+                             {/* DETALS */}
+                             <div className="space-y-2">
+                                <label className="block text-sm font-medium">Additional Prompts <span className="text-zinc-400 text-xs">(optional)</span></label>
+                                <textarea value={additionalDetails} onChange={(e)=>setAdditionalDetails(e.target.value)} rows={3} placeholder="Add any specific elements, mood, or style preferences..." className="w-full px-4 py-3 rounded-lg border border-white/10 bg-white/6 text-zinc-100 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-pink-500 resize-none"/>
+                             </div>
                         </div>
                       
 
                         {/* BUTTON */}
                         {!id && (
-                            <button className="text-[15px] w-full py-3.5 rounded-xl font-medium bg-linear-to-b from-pink-500 to-pink-600 hover:from-pink-700 disabled:cursor-not-allowed transition-colors">{loading ? 'Generating...': 'Generate Thumbnail'}</button>
+                            <button className="text-[15px] w-full py-3.5 rounded-xl font-medium bg-gradient-to-b from-pink-500 to-pink-600 hover:from-pink-700 disabled:cursor-not-allowed transition-colors">{loading ? 'Generating...': 'Generate Thumbnail'}</button>
                         )}
                     </div>
                    </div>
