@@ -4,6 +4,7 @@ import { colorSchemes, type AspectRatio, type IThumbnail, type ThumbnailStyle } 
 
 import SoftBackdrop from "../components/SoftBackdrop";
 import AspectRatioSelector from "../components/AspectRatioSelector";
+import StyleSelector from "../components/StyleSelector";
 
 
 const Generate = () => {
@@ -11,17 +12,13 @@ const Generate = () => {
     const {id} = useParams();
     const [title, setTitle] = useState('')
     const [additionalDetails, setAdditionalDetails] = useState('')
-
     const [thumbnail, setThumbnail] = useState<IThumbnail | null>(null)
-
     const [loading, setLoading] = useState(false)
-
     const [aspectRatio, setAspectRatio] = useState <AspectRatio>('16:9')
     const [colorSchemeId, setColorSchemeId] = useState <string>(colorSchemes[0].id)
     const [style, setStyle] = useState<ThumbnailStyle>('Bold & Graphic')
-
-
     const [styleDropdownOpen, setStyleDropdownOpen] = useState(false)
+
     return (
         <>
             <SoftBackdrop/>
@@ -45,6 +42,8 @@ const Generate = () => {
                              {/* { AspectRationSelector} */}
                              <AspectRatioSelector value={aspectRatio}  onChange={setAspectRatio}/>
                              {/* StyleSelector */}
+                             <StyleSelector value={style} onChange={setStyle} isOpen={styleDropdownOpen} setIsOpen={setStyleDropdownOpen}/>
+
                              {/* ColorSchemeSelector */}
 
                              {/* DETALS */}
