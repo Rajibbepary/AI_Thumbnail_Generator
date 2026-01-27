@@ -9,6 +9,7 @@ import MyGeneration from "./pages/MyGeneration";
 import YtPreview from "./pages/YtPreview";
 import Login from "./components/Login";
 import { useEffect } from "react";
+import Contact from "./components/Contact";
 
 export default function App() {
 
@@ -26,6 +27,7 @@ export default function App() {
                 <Route path="/generate" element={<Generate />} />
                 <Route path="/generate/:id" element={<Generate />} />
                 <Route path="/mygeneration" element={<MyGeneration />} />
+                <Route path="/contact" element={<Contact/>}/>
                 <Route path="/preview" element={<YtPreview/>} />
                 <Route path="/login" element={<Login/>} />
             </Routes>

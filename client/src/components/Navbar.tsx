@@ -28,7 +28,7 @@ export default function Navbar() {
                     <Link to={'/mygeneration'} className="hover:text-pink-500 transition">
                     My Generations
                     </Link>
-                    <Link to={'/'} className="hover:text-pink-500 transition">
+                    <Link to={'/contact'} className="hover:text-pink-500 transition">
                     My Contact
                     </Link>
                    
@@ -50,7 +50,7 @@ export default function Navbar() {
                     <Link onClick={() => setIsOpen(false)} to={'/mygeneration'}>
                     My Generations
                     </Link>
-                    <Link onClick={() => setIsOpen(false)} to={'/#'}>
+                    <Link onClick={() => setIsOpen(false)} to={'/contact'}>
                     My Contact
                     </Link>
                     <Link onClick={() => setIsOpen(false)} to={'/login'}>
