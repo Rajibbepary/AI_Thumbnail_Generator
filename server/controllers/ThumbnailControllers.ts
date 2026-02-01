@@ -35,7 +35,7 @@ export const generateThumbnail = async (req: Request, res: Response)=>{
         const {title, prompt: user_prompt, style, aspect_ratio,
             color_scheme, text_overlay
         } = req.body;
-const thumbail = await Thumbnail.create({
+const thumbnail = await Thumbnail.create({
     userId,
     title,
     prompt_used: user_prompt,
@@ -66,7 +66,7 @@ const generationConfig: GenerateContentConfig = {
     ]
 }
 
-let prompt = `Create a ${stylePrompts[style as keyof stylePrompts]} for: "${title}"`;
+let prompt = `Create a ${stylePrompts[style as keyof typeof stylePrompts]} for: "${title}"`;
 if(color_scheme){
     prompt += `Use a ${colorSchemeDescriptions[color_scheme as keyof typeof colorSchemeDescriptions]} color scheme.`
 }
@@ -110,11 +110,11 @@ fs.writeFileSync(filePath, finalBuffer!);
 
 const UploadResult = await cloudinary.uploader.upload(filePath, {resource_type: 'image'})
 
-thumbail.image_url = UploadResult.url;
-thumbail.isGenerating = false;
-await thumbail.save()
+thumbnail.image_url = UploadResult.url;
+thumbnail.isGenerating = false;
+await thumbnail.save()
 
-res.json({message: 'Thumbnail Generated', thumbail})
+res.json({message: 'Thumbnail Generated', thumbnail})
 
 // remove image file from disk
 fs.unlinkSync(filePath)
