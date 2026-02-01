@@ -124,3 +124,19 @@ fs.unlinkSync(filePath)
         res.status(500).json({ message: error.message});
     }
 }
+
+
+//Controllres For Thumbnail Deletion
+
+export const deleteThumbnail = async (req: Request, res:Response)=>{
+    try{
+        const {id} = req.params;
+        const {userId} = req.session;
+
+        await Thumbnail.findByIdAndDelete({_id: id, userId})
+
+    } catch(error: any) {
+        console.log(error);
+        res.status(500).json({ message: error.message})
+    }
+}
