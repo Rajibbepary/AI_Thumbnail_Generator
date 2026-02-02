@@ -3,8 +3,6 @@ import type { IUser } from "../assets/assets";
 import toast from "react-hot-toast";
 import api from '../configs/api';
 
-
-
 interface AuthContextProps{
     isLoggedIn: boolean;
     setIsLoggedIn: (isLoggedIn: boolean) =>void;

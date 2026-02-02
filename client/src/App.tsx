@@ -10,6 +10,7 @@ import YtPreview from "./pages/YtPreview";
 import Login from "./components/Login";
 import { useEffect } from "react";
 import Contact from "./components/Contact";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
 
@@ -20,6 +21,7 @@ export default function App() {
 
     return (
         <>
+            <Toaster/>
             <LenisScroll />
             <Navbar />
             <Routes>
