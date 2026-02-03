@@ -47,7 +47,9 @@ const thumbnail = await Thumbnail.create({
     isGenerating: true
 })
 
-const model = 'gemini-3-pro-image-preview';
+//const model = 'gemini-3-pro-image-preview';
+const model = "models/gemini-1.5-flash";
+
 
 const generationConfig: GenerateContentConfig = {
    maxOutputTokens: 32768,
